@@ -34,6 +34,10 @@ jobs:
       - name: Instalar Firebase CLI
         run: npm install -g firebase-tools
 
+      
       - name: Publicar no Firebase Hosting
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ steps.auth.outputs.credentials_file_path }}
+          GOOGLE_CLOUD_PROJECT: eudora-world-rpg
         run: firebase deploy --only hosting --project eudora-world-rpg --non-interactive
         
