@@ -19,12 +19,6 @@ jobs:
       - name: Baixar arquivos
         uses: actions/checkout@v4
 
-      - name: Diagnosticar identidade do GitHub
-        run: |
-          echo "Repositorio: $GITHUB_REPOSITORY"
-          echo "Referencia: $GITHUB_REF"
-          echo "Evento: $GITHUB_EVENT_NAME"
-
       - name: Autenticar no Google Cloud
         id: auth
         uses: google-github-actions/auth@v2
@@ -34,14 +28,12 @@ jobs:
           create_credentials_file: true
           export_environment_variables: true
 
-
       - name: Instalar Firebase CLI
         run: npm install -g firebase-tools
 
-      
       - name: Publicar no Firebase Hosting
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ steps.auth.outputs.credentials_file_path }}
           GOOGLE_CLOUD_PROJECT: eudora-world-rpg
         run: firebase deploy --only hosting --project eudora-world-rpg --non-interactive
-        
+
