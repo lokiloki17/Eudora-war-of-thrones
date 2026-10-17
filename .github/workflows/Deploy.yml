@@ -1,6 +1,10 @@
 
-name: Publicar Eudora World
-
+      - name: Diagnosticar identidade do GitHub
+        run: |
+          echo "Repositorio: $GITHUB_REPOSITORY"
+          echo "Referencia: $GITHUB_REF"
+          echo "Evento: $GITHUB_EVENT_NAME"
+          
 on:
   push:
     branches:
