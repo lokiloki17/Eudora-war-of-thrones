@@ -31,9 +31,23 @@ jobs:
       - name: Instalar Firebase CLI
         run: npm install -g firebase-tools
 
+      - name: Diagnosticar credenciais Google
+        run: |
+          echo "Verificando credenciais..."
+          if [ -f "$GOOGLE_APPLICATION_CREDENTIALS" ]; then
+            echo "Arquivo de credenciais encontrado."
+          else
+            echo "ERRO: Arquivo de credenciais ausente."
+            exit 1
+          fi
+          echo "Projeto: $GOOGLE_CLOUD_PROJECT"
+          firebase --version
+          
+      
       - name: Publicar no Firebase Hosting
+        run: |
+          firebase deploy --only hosting --project eudora-world-rpg --non-interactive
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ steps.auth.outputs.credentials_file_path }}
           GOOGLE_CLOUD_PROJECT: eudora-world-rpg
-        run: firebase deploy --only hosting --project eudora-world-rpg --non-interactive
 
