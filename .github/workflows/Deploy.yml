@@ -1,10 +1,6 @@
 
-      - name: Diagnosticar identidade do GitHub
-        run: |
-          echo "Repositorio: $GITHUB_REPOSITORY"
-          echo "Referencia: $GITHUB_REF"
-          echo "Evento: $GITHUB_EVENT_NAME"
-          
+name: Publicar Eudora World
+
 on:
   push:
     branches:
@@ -22,6 +18,12 @@ jobs:
     steps:
       - name: Baixar arquivos
         uses: actions/checkout@v4
+
+      - name: Diagnosticar identidade do GitHub
+        run: |
+          echo "Repositorio: $GITHUB_REPOSITORY"
+          echo "Referencia: $GITHUB_REF"
+          echo "Evento: $GITHUB_EVENT_NAME"
 
       - name: Autenticar no Google Cloud
         uses: google-github-actions/auth@v2
