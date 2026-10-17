@@ -2,10 +2,10 @@
 name: Publicar Eudora World
 
 on:
-  workflow_dispatch:
   push:
     branches:
-      - principal
+      - main
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -30,3 +30,4 @@ jobs:
 
       - name: Publicar no Firebase Hosting
         run: firebase deploy --only hosting --project eudora-world-rpg --non-interactive
+        
